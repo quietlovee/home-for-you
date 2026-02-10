@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Untuk Naka — my baby 🤍</title>
+
+  <style>
+    :root{
+      --bg1:#070a14;
+      --bg2:#120b22;
+      --glass: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.16);
+      --text:#fbf7ff;
+      --muted: rgba(251,247,255,.75);
+      --accent:#ff4d7d;
+      --accent2:#ffd1dc;
+      --shadow: 0 24px 70px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 650px at 18% 12%, rgba(255,77,125,.22), transparent 60%),
+        radial-gradient(820px 620px at 82% 16%, rgba(124,92,255,.18), transparent 55%),
+        radial-gradient(900px 650px at 50% 90%, rgba(255,209,220,.18), transparent 62%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:-2px;
+      background: radial-gradient(700px 420px at 50% 25%, rgba(255,77,125,.09), transparent 62%);
+      opacity:.0;
+      animation: heartbeat 2.2s ease-in-out infinite;
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes heartbeat{
+      0%,100%{opacity:.06; transform: scale(1)}
+      40%{opacity:.12; transform: scale(1.01)}
+      60%{opacity:.08; transform: scale(1.005)}
+    }
+
+    .float{
+      position:fixed;
+      left:var(--x);
+      top:110%;
+      width:var(--s);
+      height:var(--s);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 55%),
+        linear-gradient(135deg, rgba(255,77,125,.9), rgba(255,209,220,.9));
+      opacity:.38;
+      transform: translate(-50%,0) rotate(var(--r));
+      filter: blur(.3px);
+      animation: up var(--d) linear infinite;
+      z-index:0;
+    }
+    @keyframes up{
+      0%{opacity:0; transform: translate(-50%,0) rotate(var(--r))}
+      12%{opacity:.38}
+      100%{opacity:0; transform: translate(calc(-50% + var(--drift)), -140vh) rotate(calc(var(--r) + 60deg))}
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:34px 16px 62px;
+    }
+
+    .card{
+      width:min(980px, 100%);
+      border-radius:30px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      transition: filter .25s ease, transform .25s ease, opacity .25s ease;
+    }
+
+    .topGlow{
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(800px 260px at 50% 0%, rgba(255,77,125,.18), transparent 62%),
+        radial-gradient(560px 240px at 14% 10%, rgba(255,209,220,.14), transparent 60%),
+        radial-gradient(560px 240px at 86% 10%, rgba(124,92,255,.12), transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .blush{
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(520px 220px at 28% 25%, rgba(255,209,220,.18), transparent 65%),
+        radial-gradient(520px 220px at 72% 25%, rgba(255,77,125,.14), transparent 65%);
+      opacity:0;
+      pointer-events:none;
+      z-index:2;
+      transition: opacity .35s ease;
+    }
+    .card.blushing .blush{opacity:1;}
+
+    header{
+      position:relative;
+      z-index:3;
+      padding:28px 26px 18px;
+      border-bottom:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), transparent);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid var(--stroke);
+      color: var(--muted);
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+    h1{
+      margin:14px 0 6px;
+      font-size: clamp(30px, 3.8vw, 48px);
+      line-height:1.08;
+    }
+    .sub{
+      margin:0;
+      max-width: 78ch;
+      color: var(--muted);
+      font-size: clamp(14px, 1.6vw, 16px);
+      line-height:1.8;
+    }
+    .name{
+      color: var(--accent2);
+      text-shadow: 0 10px 40px rgba(255,77,125,.18);
+      cursor:pointer;
+    }
+
+    .grid{
+      position:relative;
+      z-index:3;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      padding:20px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .panel{
+      border-radius:24px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.16);
+      padding:18px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:18px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .icon{
+      width:30px;height:30px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background: rgba(255,77,125,.14);
+      border:1px solid rgba(255,77,125,.26);
+    }
+
+    .envelope{
+      margin-top:12px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .envelopeTop{
+      padding:14px 14px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), transparent);
+      color: var(--muted);
+      font-size:13px;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(251,247,255,.8);
+    }
+    .paper{
+      padding:16px 16px 14px;
+      line-height:1.9;
+      font-size:15px;
+      color:#fff;
+    }
+    .paper p{margin:0 0 12px}
+    .paper .sig{
+      margin-top:10px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .type{
+      display:inline;
+      border-right: 2px solid rgba(255,255,255,.55);
+      padding-right:2px;
+      animation: caret 1s steps(1,end) infinite;
+    }
+    @keyframes caret{50%{border-right-color: transparent}}
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .btn{
+      flex:1;
+      min-width: 190px;
+      padding:13px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease, background .12s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10);}
+    .btn:active{transform: translateY(0) scale(.99);}
+    .btnPrimary{
+      border:1px solid rgba(255,77,125,.42);
+      background: linear-gradient(135deg, rgba(255,77,125,.95), rgba(255,209,220,.92));
+      color:#17070f;
+      font-weight:900;
+    }
+
+    .soft{
+      margin:0;
+      color: var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
+
+    .reasonBox{
+      margin-top:12px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .reasonBox:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(520px 180px at 20% 0%, rgba(255,77,125,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .reasonTitle{
+      position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      color: rgba(251,247,255,.86);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .reason{
+      position:relative;
+      padding:14px 14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      line-height:1.9;
+      font-size:15px;
+      white-space:pre-line;
+    }
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      color: rgba(251,247,255,.8);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .meter{
+      margin-top:12px;
+      padding:14px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+    }
+    .meterTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      color: rgba(251,247,255,.85);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .bar{
+      height:14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width: 40%;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(255,77,125,.95), rgba(255,209,220,.95));
+      box-shadow: 0 12px 26px rgba(255,77,125,.18);
+      transition: width .55s cubic-bezier(.2,.9,.2,1);
+    }
+    .meterNote{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .hold{
+      display:none;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(251,247,255,.86);
+      line-height:1.8;
+      font-size:14px;
+      animation: popIn .18s ease-out;
+    }
+    @keyframes popIn{from{transform:scale(.985);opacity:.4}to{transform:scale(1);opacity:1}}
+
+    .overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      z-index:10;
+      padding:16px;
+    }
+    .modal{
+      width:min(560px, 100%);
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalTop{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.14);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      color: rgba(251,247,255,.85);
+      font-size:13px;
+    }
+    .modalBody{
+      padding:16px;
+      line-height:1.95;
+      color:#fff;
+    }
+    .close{
+      cursor:pointer;
+      border-radius:999px;
+      padding:6px 10px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:800;
+    }
+
+    footer{
+      position:relative;
+      z-index:3;
+      padding:16px 20px 22px;
+      border-top:1px solid var(--stroke);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color: rgba(251,247,255,.72);
+    }
+
+    .toast{
+      position: fixed;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%);
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(10,10,20,.78);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      font-size:13px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 12;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-4px);}
+
+    .popHeart{
+      position:fixed;
+      transform: translate(-50%,-50%) scale(.6) rotate(45deg);
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, rgba(255,77,125,.95), rgba(255,209,220,.95));
+      opacity: .0;
+      animation: pop 750ms ease-out forwards;
+      z-index: 13;
+    }
+    .popHeart:before,.popHeart:after{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      background: inherit;
+    }
+    .popHeart:before{left:-50%}
+    .popHeart:after{top:-50%}
+    @keyframes pop{
+      0%{opacity:0; transform: translate(-50%,-50%) scale(.4) rotate(45deg)}
+      15%{opacity:.9}
+      100%{opacity:0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2) rotate(45deg)}
+    }
+
+    .spark{
+      position:absolute;
+      width:6px;height:6px;
+      border-radius:50%;
+      background: rgba(255,255,255,.85);
+      filter: blur(.2px);
+      animation: spark 900ms ease-out forwards;
+      pointer-events:none;
+      z-index: 12;
+    }
+    @keyframes spark{
+      from{transform: translate(0,0) scale(1); opacity:1}
+      to{transform: translate(var(--dx), var(--dy)) scale(.2); opacity:0}
+    }
+
+    .hidden{
+      display:none;
+      margin-top:12px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--stroke);
+      color: rgba(251,247,255,.92);
+      line-height:1.75;
+    }
+    .hidden p{ margin:0 0 8px; }
+
+    .warmBox{
+      margin-top:12px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      padding:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .warmBox:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(520px 180px at 20% 0%, rgba(255,77,125,.10), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .warmBox > *{ position:relative; }
+
+    .gate{
+      position:fixed; inset:0;
+      display:grid; place-items:center;
+      z-index: 20;
+      padding: 18px;
+      background:
+        radial-gradient(700px 500px at 30% 20%, rgba(255,77,125,.18), transparent 60%),
+        radial-gradient(700px 500px at 70% 30%, rgba(124,92,255,.14), transparent 60%),
+        radial-gradient(700px 500px at 50% 85%, rgba(255,209,220,.14), transparent 60%),
+        linear-gradient(160deg, rgba(7,10,20,.98), rgba(18,11,34,.98));
+      backdrop-filter: blur(10px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+    .gate.hide{
+      opacity:0;
+      transform: translateY(-8px);
+      pointer-events:none;
+    }
+    .gateCard{
+      width:min(560px, 100%);
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .gateTop{
+      padding:18px 18px 14px;
+      border-bottom:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), transparent);
+    }
+    .gateTop h2{
+      margin:10px 0 6px;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .gateBody{ padding:16px 18px 18px; }
+    .q{
+      margin:0 0 10px;
+      font-size:15px;
+      line-height:1.7;
+      color:#fff;
+    }
+    .inputRow{ display:flex; gap:10px; flex-wrap:wrap; }
+    .inp{
+      flex:1;
+      min-width: 220px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color:#fff;
+      outline:none;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .err{
+      margin-top:10px;
+      display:none;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,77,125,.28);
+      background: rgba(255,77,125,.10);
+      color: rgba(255,209,220,.95);
+      font-size:13px;
+      line-height:1.6;
+      animation: popIn .18s ease-out;
+    }
+    .shake{ animation: shake .35s ease-in-out; }
+    @keyframes shake{
+      0%,100%{ transform: translateX(0) }
+      20%{ transform: translateX(-8px) }
+      40%{ transform: translateX(8px) }
+      60%{ transform: translateX(-6px) }
+      80%{ transform: translateX(6px) }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Password Gate -->
+  <section class="gate" id="gate" aria-label="Password gate">
+    <div class="gateCard" id="gateCard">
+      <div class="gateTop">
+        <div class="badge">🔒 akses spesial • cuma buat kamu</div>
+        <h2>Masuk dulu ya, bby 🤍</h2>
+        <p class="soft">Jawab pertanyaan kecil ini, habis itu hadiahnya kebuka.</p>
+      </div>
+      <div class="gateBody">
+        <p class="q"><b>Siapa cowo yang paling aku sayang?</b></p>
+        <div class="inputRow">
+          <input class="inp" id="pass" type="text" autocomplete="off" placeholder="ketik jawabannya…" />
+          <button class="btn btnPrimary" id="enterBtn" style="flex:0 0 auto; min-width: 160px;">Masuk 💗</button>
+        </div>
+        <div class="err" id="err">bby masa lupa sih 😠</div>
+        <p class="soft" style="margin-top:10px">Hint kecil: satu kata, yang paling kamu kenal 🤏🏻</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- floating petals -->
+  <div class="float" style="--x:10%;--s:14px;--d:12s;--drift:18px;--r:18deg;"></div>
+  <div class="float" style="--x:22%;--s:10px;--d:10s;--drift:-14px;--r:-8deg;"></div>
+  <div class="float" style="--x:36%;--s:18px;--d:15s;--drift:26px;--r:30deg;"></div>
+  <div class="float" style="--x:48%;--s:12px;--d:11s;--drift:-20px;--r:-18deg;"></div>
+  <div class="float" style="--x:60%;--s:16px;--d:13s;--drift:14px;--r:22deg;"></div>
+  <div class="float" style="--x:74%;--s:9px; --d:9s; --drift:-18px;--r:-26deg;"></div>
+  <div class="float" style="--x:86%;--s:20px;--d:16s;--drift:22px;--r:12deg;"></div>
+  <div class="float" style="--x:94%;--s:12px;--d:12s;--drift:-24px;--r:-12deg;"></div>
+
+  <div class="wrap">
+    <main class="card" id="card" role="main" aria-label="Valentine page" style="opacity:.0; transform: translateY(8px);">
+      <div class="topGlow"></div>
+      <div class="blush"></div>
+
+      <header>
+        <div class="badge">💗 made with love • <span id="today"></span></div>
+        <h1>Untuk <span class="name" id="name">Naka</span>, <br/>cowoku yang paling aku sayang.</h1>
+        <p class="sub">
+          Hai <b>bby</b>, kalau kamu lagi capek atau lagi ngerasa sendiri,
+          aku pengen kamu punya satu tempat kecil yang selalu hangat.
+          Halaman ini cuma bilang satu hal:
+          <b>aku sayang kamu</b> pelan-pelan, tapi dalam.
+          <span style="opacity:.92">Dan aku selalu ada di pihak kamu.</span>
+        </p>
+
+        <div class="hidden" id="hiddenMsg"></div>
+      </header>
+
+      <section class="grid">
+        <!-- Left -->
+        <div class="panel">
+          <h2><span class="icon">💌</span> Surat kecil buat bby</h2>
+
+          <div class="envelope">
+            <div class="envelopeTop">
+              <span>dibuka pelan-pelan ya…</span>
+              <span class="pill">untuk Naka ✨</span>
+            </div>
+            <div class="paper">
+              <p><span class="type" id="typed"></span></p>
+
+              <p id="afterTyped" style="display:none">
+                Aku sayang kamu bukan karena kamu selalu kuat,
+                tapi karena kamu tetap berusaha even when it’s hard.
+                Kamu itu tenang, Kamu itu baik, Kamu itu rumah.
+              </p>
+
+              <p id="afterTyped2" style="display:none">
+                Terimakasih yaa bby, karena kehadiran kamu itu menenangkan.
+                Kamu bikin aku merasa aman tanpa aku harus jelasin panjang-panjang.
+                Dan itu buat aku adalah bentuk sayang yang paling indah.
+              </p>
+
+              <p id="afterTyped3" style="display:none">
+                Kalau suatu hari kamu ragu, atau kamu merasa kurang,
+                tolong inget ini:
+                <b>buat aku kamu cukup.</b> Kamu lebih dari cukup.
+                Aku bangga sama kamu, sama prosesmu, sama kuatmu, sama hatimu.
+              </p>
+
+              <p id="afterTyped4" style="display:none">
+                Jadi boleh yaa? Kita saling jaga pelan-pelan dan kamu tetap jadi rumah favoritku
+                Bukan buat jadi sempurna tapi buat jadi tenang bareng.
+                <span style="opacity:.9">Aku peluk kamu dari sini.</span>
+              </p>
+
+              <div class="sig" id="sig" style="display:none">— dari aku, yang selalu milih kamu 🤍</div>
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button class="btn btnPrimary" id="openLetter">Buka suratnya 💗</button>
+            <button class="btn" id="hugBtn">Peluk bby 🫂</button>
+          </div>
+
+          <div class="btnRow" style="margin-top:10px">
+            <button class="btn" id="affBtn">Kasih sayang kecil 🤍</button>
+            <button class="btn" id="rainBtn">Hujan hati 💕</button>
+          </div>
+
+          <div class="btnRow" style="margin-top:10px">
+            <button class="btn" id="holdBtn">Pegang tangan 🤝</button>
+          </div>
+
+          <div class="hold" id="holdBox">
+            🤝 <b>Bby, tangan kamu aku pegang ya.</b><br/>
+            Biar kamu inget: kamu gak sendirian. Kita bareng-bareng.
+          </div>
+
+          <!-- TAMPILKAN ISI UCAPAN (bukan tombol salin) -->
+          <div class="warmBox" style="margin-top:14px;">
+            <h2 style="margin:0 0 8px; font-size:16px; display:flex; gap:10px; align-items:center;">
+              <span class="icon" style="width:28px;height:28px;border-radius:12px;">📌</span>
+              Ini buat kamu (dibaca pelan-pelan)
+            </h2>
+            <div class="reason">
+  <p>Happy Valentine, Naka 🤍</p>
+
+  <p>
+    Aku sayang kamu bby.  
+    Makasih banyak karena udah bertahan dan tetap jadi diri kamu,
+    bahkan di hari-hari yang lelah dan gak selalu mudah.
+  </p>
+
+  <p>
+    Kalau kamu lelah, kamu boleh berhenti sebentar.
+    Kamu gak perlu kuat terus, aku tetap ada nemenin kamu dengan caraku.
+  </p>
+
+  <p>
+    Aku sayang kamu bukan cuma di hari-hari spesial,
+    tapi juga di hari yang biasa, yang tenang, dan yang sederhana.
+  </p>
+
+  <p>
+    Kamu gak harus sempurna untuk dicintai.
+    Buat aku, kamu udah cukup bahkan lebih.
+    Aku bangga punya kamu dan aku bangga sama prosesmu.
+  </p>
+</div>
+            </div>
+          </div>
+
+          <p class="soft" style="margin-top:10px">
+            Kalau kamu baca ini pas malam, aku pengen kamu tidur dengan hati yang lebih tenang.
+            Kalau kamu baca ini pas siang, aku pengen kamu jalanin hari dengan rasa “aku dicintai”.
+          </p>
+
+          <div class="warmBox" style="margin-top:14px;">
+            <h2 style="margin:0 0 8px; font-size:16px; display:flex; gap:10px; align-items:center;">
+              <span class="icon" style="width:28px;height:28px;border-radius:12px;">🌷</span>
+              Hal yang paling aku banggakan dari kamu
+            </h2>
+            <p class="soft" style="margin:0">
+              Aku bangga sama cara kamu tetap berusaha even saat capek.
+              Aku bangga kamu gak menyerah dan tetap jadi orang baik
+              di dunia yang kadang gak lembut.
+            </p>
+          </div>
+
+          <div class="warmBox">
+            <h2 style="margin:0 0 8px; font-size:16px; display:flex; gap:10px; align-items:center;">
+              <span class="icon" style="width:28px;height:28px;border-radius:12px;">🤍</span>
+              Doa kecil buat kamu
+            </h2>
+            <p class="soft" style="margin:0">
+              Semoga langkah kamu selalu ditemani tenang. Semoga capekmu selalu punya tempat pulang.
+              Dan semoga kamu selalu inget: <b>kamu gak sendirian.</b>
+            </p>
+          </div>
+
+          <div class="warmBox">
+            <h2 style="margin:0 0 8px; font-size:16px; display:flex; gap:10px; align-items:center;">
+              <span class="icon" style="width:28px;height:28px;border-radius:12px;">🌙</span>
+              Kalau hati kamu lagi…
+            </h2>
+            <div class="btnRow" style="margin-top:10px">
+              <button class="btn" id="feelCapek">😮‍💨 capek</button>
+              <button class="btn" id="feelKangen">🤍 kangen</button>
+              <button class="btn" id="feelButuh">🫂 butuh ditemenin</button>
+            </div>
+            <p class="soft" id="feelText" style="margin-top:10px"></p>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <aside class="panel">
+          <h2><span class="icon">🌙</span> Hal kecil yang aku syukuri dari bby</h2>
+          <p class="soft">
+            Kadang kamu gak sadar, tapi kamu itu hadiah.
+            Klik tombolnya… biar aku bisa ngingetin kamu, satu per satu.
+          </p>
+
+          <div class="reasonBox">
+            <div class="reasonTitle">
+              <span>“alasan kecil” yang besar artinya</span>
+              <span class="tag" id="countTag">1 / 100</span>
+            </div>
+            <div class="reason" id="reason">
+              Kamu bikin aku merasa dipilih tanpa aku harus minta.
+            </div>
+
+            <div class="btnRow" style="margin-top:12px">
+              <button class="btn btnPrimary" id="nextReason">Satu lagi ✨</button>
+              <button class="btn" id="softSpark">Tabur sparkle ✨</button>
+            </div>
+
+            <p class="soft" style="margin-top:10px">
+              Kalau kamu lagi down klik terus yaa bby, sampai hati kamu hangat lagi.
+            </p>
+          </div>
+
+          <div class="meter">
+            <div class="meterTop">
+              <span>Love Meter (khusus buat Naka)</span>
+              <span class="tag" id="meterTag">hangat…</span>
+            </div>
+            <div class="bar"><div class="fill" id="fill"></div></div>
+            <p class="meterNote" id="meterNote">
+              Ini bukan angka beneran, ini cuma cara aku bilang: aku sayang kamu banyak banget.
+            </p>
+            <div class="btnRow" style="margin-top:12px">
+              <button class="btn btnPrimary" id="boost">Naikin love meter 💗</button>
+              <button class="btn" id="calm">Bikin tenang 🌿</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- BAGIAN AKHIR (DITARUH DI SINI, SEBELUM HAPPY VALENTINE) -->
+
+      <!-- SWEET ENDING -->
+      <section class="warmBox" style="margin:0 20px 0; margin-top:10px">
+        <h2 style="margin:0 0 10px; font-size:17px; display:flex; gap:10px; align-items:center;">
+          <span class="icon" style="width:28px;height:28px;border-radius:12px;">🤍</span>
+          Buat kamu, bby
+        </h2>
+
+        <p class="soft" id="endingText">
+          Kalau kamu sampai di bagian ini, berarti kamu udah baca semuanya.
+        </p>
+
+        <div class="btnRow" style="margin-top:12px">
+          <button class="btn btnPrimary" id="endBtn">Baca pelan-pelan 🤍</button>
+        </div>
+      </section>
+
+      <!-- WISH BUAT KITA KE DEPANNYA -->
+      <section class="warmBox" style="margin:0 20px 0; margin-top:12px">
+        <h2 style="margin:0 0 10px; font-size:17px; display:flex; gap:10px; align-items:center;">
+          <span class="icon" style="width:28px;height:28px;border-radius:12px;">🌱</span>
+          Wish kecil buat kita
+        </h2>
+
+        <p class="soft" id="wishText">
+          Ini bukan janji besar…
+        </p>
+
+        <div class="btnRow" style="margin-top:12px">
+          <button class="btn btnPrimary" id="wishBtn">Baca pelan-pelan 🌿</button>
+        </div>
+      </section>
+
+      <!-- WISH DARI DIA -->
+      <section class="warmBox" style="margin:0 20px 14px; margin-top:12px">
+        <h2 style="margin:0 0 10px; font-size:17px; display:flex; gap:10px; align-items:center;">
+          <span class="icon" style="width:28px;height:28px;border-radius:12px;">✍️</span>
+          Sekarang giliran kamu, bby
+        </h2>
+
+        <p class="soft">
+          Tulis satu wish kecil versi kamu.<br>
+          gak harus indah, cukup jujur 🤍
+        </p>
+
+        <textarea id="hisWish"
+          placeholder="Wish kamu buat kita ke depannya…"
+          style="
+            width:100%;
+            margin-top:10px;
+            padding:14px;
+            border-radius:16px;
+            border:1px solid rgba(255,255,255,.16);
+            background:rgba(0,0,0,.18);
+            color:#fff;
+            font-size:14px;
+            resize:none;
+            min-height:90px;
+          "></textarea>
+
+        <div class="btnRow" style="margin-top:12px">
+          <button class="btn btnPrimary" id="saveWishBtn">Simpan wish 🤍</button>
+        </div>
+
+        <p class="soft" id="wishSavedText" style="display:none; margin-top:10px">
+          Makasih yaa bby wish kamu aku simpen. Nanti aku baca pelan-pelan 🤍
+        </p>
+      </section>
+
+<footer>
+  <div>
+    Happy Valentine,
+    <span style="color:var(--accent2); font-weight:900">bby</span> •
+    <span id="year" style="opacity:.92">i love you more</span> •
+    <span style="opacity:.92">aku sayang kamu selamanya</span>
+  </div>
+</footer>
+
+  <!-- modal -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modalTop">
+        <span id="modalTitle">🫂 peluk virtual</span>
+        <button class="close" id="closeModal">tutup</button>
+      </div>
+      <div class="modalBody" id="modalText"></div>
+      <div style="padding:0 16px 16px;">
+        <button class="btn btnPrimary" id="again" style="width:100%">Lagi 🤍</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Tersalin! 💌</div>
+
+  <script>
+    // tanggal badge (manual)
+document.getElementById('today').textContent = "14 Februari 2026";
+
+// footer text (bukan tahun)
+document.getElementById('year').textContent = "i love you more";
+
+    const card = document.getElementById('card');
+
+    const toast = document.getElementById('toast');
+    let tt;
+    function popToast(text){
+      toast.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(tt);
+      tt = setTimeout(()=>toast.classList.remove('show'), 1500);
+    }
+
+    function popHeart(x,y){
+      const h = document.createElement('div');
+      h.className = 'popHeart';
+      h.style.left = x + 'px';
+      h.style.top = y + 'px';
+      h.style.setProperty('--dx', (Math.random()*140-70) + 'px');
+      h.style.setProperty('--dy', (Math.random()*-180-40) + 'px');
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 780);
+    }
+
+    function microHearts(n=10, nearGate=false){
+      const rect = (nearGate ? gateCard : card).getBoundingClientRect();
+      const x = rect.left + rect.width * 0.55;
+      const y = rect.top + rect.height * 0.32;
+      for(let i=0;i<n;i++){
+        popHeart(x + (Math.random()*120-60), y + (Math.random()*60-30));
+      }
+    }
+
+    function heartRain(n=12){
+      for(let i=0;i<n;i++){
+        setTimeout(()=>{
+          popHeart(Math.random() * window.innerWidth, 30 + Math.random()*60);
+        }, i*80);
+      }
+    }
+
+    function blushOnce(){
+      card.classList.add('blushing');
+      setTimeout(()=>card.classList.remove('blushing'), 850);
+    }
+
+    const gate = document.getElementById('gate');
+    const gateCard = document.getElementById('gateCard');
+    const pass = document.getElementById('pass');
+    const enterBtn = document.getElementById('enterBtn');
+    const err = document.getElementById('err');
+    const PASSWORD = "naka";
+    function normalize(s){ return (s || "").trim().toLowerCase(); }
+
+    function unlock(){
+      gate.classList.add('hide');
+      setTimeout(()=>{
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+        microHearts(18, true);
+        blushOnce();
+        popToast("welcome, bby 🤍");
+        pass.blur();
+      }, 180);
+    }
+    function wrong(){
+      err.style.display = "block";
+      gateCard.classList.remove('shake');
+      void gateCard.offsetWidth;
+      gateCard.classList.add('shake');
+      microHearts(10, true);
+      popToast("coba lagi 🤍");
+    }
+    function tryEnter(){
+      const val = normalize(pass.value);
+      if(val === PASSWORD) unlock();
+      else wrong();
+    }
+    enterBtn.addEventListener('click', tryEnter);
+    pass.addEventListener('keydown', (e)=>{ if(e.key === "Enter") tryEnter(); });
+
+    /* HIDDEN MESSAGE (sesuai yang kamu minta) */
+    let clicks = 0;
+    let shownMessages = 0;
+
+    const hiddenMessages = [
+      "🤍 Aku milih kamu.",
+      "Aku milih kamu bahkan di hari kamu ragu sama diri kamu sendiri.",
+      "Kalau dunia bikin kamu capek, aku tetap di pihak kamu.",
+      "Aku bangga sama kamu. Bukan cuma hasilnya, tapi prosesnya.",
+      "Hari ini, besok, dan seterusnya aku tetap milih kamu."
+    ];
+
+    const nameEl = document.getElementById('name');
+    const hiddenBox = document.getElementById('hiddenMsg');
+
+    nameEl.addEventListener('click', () => {
+      clicks++;
+
+      if (clicks % 5 === 0 && shownMessages < hiddenMessages.length) {
+        hiddenBox.style.display = 'block';
+
+        const p = document.createElement('p');
+        p.style.margin = "0 0 8px";
+        p.style.opacity = "0";
+        p.style.transition = "opacity .6s ease";
+        p.innerText = hiddenMessages[shownMessages];
+
+        hiddenBox.appendChild(p);
+
+        setTimeout(() => { p.style.opacity = "1"; }, 50);
+
+        shownMessages++;
+        microHearts(12);
+        blushOnce();
+        popToast("🤍");
+      }
+    });
+
+    const typedEl = document.getElementById('typed');
+    const parts = [
+      "Bby ",
+      "aku gak pandai bikin kata-kata mewah, ",
+      "tapi aku pandai satu hal: ",
+      "sayang kamu ",
+      "dengan cara yang hangat,",
+      "dengan cara yang tenang, ",
+      "dengan cara yang nyata."
+    ];
+    let opened = false;
+
+    function typeText(text, speed=26){
+      return new Promise(resolve=>{
+        let i=0;
+        const t = setInterval(()=>{
+          typedEl.textContent += text[i] || "";
+          i++;
+          if(i > text.length){
+            clearInterval(t);
+            resolve();
+          }
+        }, speed);
+      });
+    }
+
+    async function openLetter(){
+      if(opened) return;
+      opened = true;
+      typedEl.textContent = "";
+      for(const p of parts) await typeText(p);
+      const ids = ["afterTyped","afterTyped2","afterTyped3","afterTyped4","sig"];
+      let delay = 240;
+      ids.forEach((id, idx)=>{
+        setTimeout(()=>{ document.getElementById(id).style.display = "block"; }, delay + idx*210);
+      });
+      popToast("suratnya kebuka 💗");
+      heartRain(14);
+      blushOnce();
+    }
+    document.getElementById('openLetter').addEventListener('click', openLetter);
+
+    document.getElementById('rainBtn').addEventListener('click', ()=>{
+      heartRain(26);
+      blushOnce();
+      popToast("💕");
+    });
+
+    function sparkleBurst(x,y){
+      for(let i=0;i<14;i++){
+        const s = document.createElement('div');
+        s.className = 'spark';
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        s.style.setProperty('--dx', (Math.random()*160-80) + 'px');
+        s.style.setProperty('--dy', (Math.random()*160-80) + 'px');
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(), 950);
+      }
+    }
+    document.getElementById('softSpark').addEventListener('click', (e)=>{
+      const r = e.target.getBoundingClientRect();
+      sparkleBurst(r.left + r.width/2, r.top + r.height/2);
+      popToast("sparkle ✨");
+      blushOnce();
+    });
+
+    const holdBox = document.getElementById('holdBox');
+    document.getElementById('holdBtn').addEventListener('click', ()=>{
+      const isShown = holdBox.style.display === 'block';
+      holdBox.style.display = isShown ? 'none' : 'block';
+      if(!isShown){
+        popToast("🤝");
+        microHearts(10);
+        blushOnce();
+      }else{
+        popToast("pelan-pelan…");
+      }
+    });
+
+    const overlay = document.getElementById('overlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+
+    const hugs = [
+      "Bby… sini aku peluk pelan-pelan, kamu gak harus kuat terus ada aku disini.",
+      "Aku peluk kamu yang diam-diam berjuang. Kamu hebat. Aku bangga sama kamu.",
+      "Kalau dadamu lagi sesak, aku peluk sampai napasmu pelan lagi.",
+      "Aku peluk kamu tanpa syarat. Cukup jadi diri kamu sendiri yaa bby.",
+      "Aku peluk kamu dan aku bisikin: ‘makasih udah bertahan sampai hari ini.’"
+    ];
+    const affection = [
+      "Sini… aku kasih sayang kecil. Biar kamu merasa dipilih lagi hari ini.",
+     "Aku sayang sama kamu, bby. Dan aku masih di sini, dengan rasa yang sama.",
+      "Kalau kamu capek, kamu boleh diam. Aku tetep disini nemenin kamu.",
+      "Aku kangen versi tenang kita. Yang gak banyak drama, tapi banyak rasa.",
+      "Aku bangga punya kamu dan aku pengen kamu percaya itu."
+    ];
+
+    function openModal(kind){
+      overlay.style.display = 'grid';
+      if(kind === 'affection'){
+        modalTitle.textContent = "🤍 sayang kecil";
+        modalText.textContent = affection[Math.floor(Math.random()*affection.length)];
+        microHearts(12);
+        blushOnce();
+        popToast("🤍");
+      }else{
+        modalTitle.textContent = "🫂 peluk virtual";
+        modalText.textContent = hugs[Math.floor(Math.random()*hugs.length)];
+        microHearts(10);
+        popToast("🫂");
+      }
+    }
+    function closeModal(){ overlay.style.display = 'none'; }
+
+    document.getElementById('hugBtn').addEventListener('click', ()=>openModal('hug'));
+    document.getElementById('affBtn').addEventListener('click', ()=>openModal('affection'));
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeModal(); });
+    document.getElementById('again').addEventListener('click', ()=>{
+      const isAff = modalTitle.textContent.includes("sayang");
+      modalText.textContent = isAff
+        ? affection[Math.floor(Math.random()*affection.length)]
+        : hugs[Math.floor(Math.random()*hugs.length)];
+      microHearts(10);
+      blushOnce();
+      popToast(isAff ? "🤍" : "🫂");
+    });
+
+    const reasonsBase = [
+      "Kamu bikin aku merasa aman, bahkan saat aku gak bilang apa-apa.",
+      "Cara kamu berusaha itu bikin aku jatuh cinta berkali-kali.",
+      "Kamu tetap baik, bahkan ketika kamu lelah. Itu indah banget.",
+      "Kamu gak sempurna tapi kamu tulus. Dan itu lebih langka.",
+      "Kamu bikin hal kecil terasa spesial: chat singkat, perhatian kecil dan kamu selalu ada buat aku.",
+      "Aku suka cara kamu gak menyerah, meski hari kamu berat.",
+      "Kamu punya hati yang lembut, tapi juga kuat aku salut.",
+      "Kamu bikin aku merasa dipilih, bukan cuma diingat.",
+      "Kamu ngajarin aku bahwa cinta itu bisa tenang, gak harus gaduh.",
+      "Aku bangga sama kamu dan aku pengen kamu juga bangga sama diri kamu."
+    ];
+    const starters = ["Aku suka", "Aku syukur", "Aku bangga", "Aku nyaman karena", "Aku tenang karena", "Aku jatuh cinta karena"];
+    const cores = [
+      "kamu selalu berusaha meski capek",
+      "kamu gak pelit perhatian",
+      "kamu punya hati yang baik",
+      "kamu bikin aku ngerasa aman",
+      "kamu gak ninggalin saat sulit",
+      "kamu sabar (meski gak selalu mudah)",
+      "kamu menghargai aku",
+      "kamu ngajak aku tumbuh bareng",
+      "kamu bikin aku ketawa di hari yang berat",
+      "kamu tetap jadi kamu dan itu aku suka"
+    ];
+    function shuffle(arr){
+      const a = arr.slice();
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i],a[j]]=[a[j],a[i]];
+      }
+      return a;
+    }
+    let pool = [];
+    let idx = 0;
+    let shown = 1;
+
+    function refill(){
+      const extra = [];
+      for(let i=0;i<70;i++){
+        const s = starters[Math.floor(Math.random()*starters.length)];
+        const c = cores[Math.floor(Math.random()*cores.length)];
+        extra.push(`${s} ${c}.`);
+      }
+      pool = shuffle(reasonsBase.concat(extra));
+      idx = 0;
+      shown = 1;
+      document.getElementById('countTag').textContent = `${shown} / 100`;
+    }
+    refill();
+
+    const reasonEl = document.getElementById('reason');
+    const countTag = document.getElementById('countTag');
+    document.getElementById('nextReason').addEventListener('click', ()=>{
+      if(idx >= pool.length) refill();
+      reasonEl.textContent = pool[idx++];
+      shown = Math.min(100, shown + 1);
+      countTag.textContent = `${shown} / 100`;
+      popToast("buat bby ✨");
+      microHearts(10);
+      blushOnce();
+    });
+
+    const fill = document.getElementById('fill');
+    const meterTag = document.getElementById('meterTag');
+    const meterNote = document.getElementById('meterNote');
+    let level = 40;
+
+    function setMeter(next){
+      level = Math.max(8, Math.min(100, next));
+      fill.style.width = level + "%";
+      if(level < 35){
+        meterTag.textContent = "pelan-pelan…";
+        meterNote.textContent = "Kalau kamu lagi capek, kita pelan-pelan yaa bby. Aku tetap ada disini.";
+      }else if(level < 70){
+        meterTag.textContent = "hangat…";
+        meterNote.textContent = "Ini hangatnya aku ke kamu gak heboh, tapi nyata.";
+      }else{
+        meterTag.textContent = "disayang 💗";
+        meterNote.textContent = "Ini level: aku pengen jagain kamu dan aku serius sama itu.";
+      }
+    }
+    document.getElementById('boost').addEventListener('click', ()=>{
+      setMeter(level + (10 + Math.floor(Math.random()*10)));
+      microHearts(12);
+      blushOnce();
+      popToast("💗");
+    });
+    document.getElementById('calm').addEventListener('click', ()=>{
+      setMeter(level - (10 + Math.floor(Math.random()*8)));
+      popToast("🌿");
+    });
+    setMeter(level);
+
+    const feelText = document.getElementById('feelText');
+    document.getElementById('feelCapek').addEventListener('click', ()=>{
+      feelText.textContent = "Kalau kamu capek, istirahat yaa bby. Kamu gak harus kuat terus. Aku tetap di sini.";
+      microHearts(10); blushOnce(); popToast("😮‍💨");
+    });
+    document.getElementById('feelKangen').addEventListener('click', ()=>{
+      feelText.textContent = "Kalau kamu kangen, aku pengen kamu ngerasa ditemenin. Aku ada di sini, jagain kamu dengan caraku.";
+    });
+    document.getElementById('feelButuh').addEventListener('click', ()=>{
+      feelText.textContent = "Kalau kamu butuh ditemenin, kamu gak perlu minta panjang-panjang. Aku ada kita bareng-bareng yaa.";
+      microHearts(10); blushOnce(); popToast("🫂");
+    });
+
+    // ===== SWEET ENDING =====
+    const endingLines = [
+      "Aku gak tau hidup bakal selalu mudah atau gak.",
+      "Tapi aku tau satu hal: aku mau jalaninnya bareng kamu.",
+      "Kamu gak harus jadi siapa-siapa selain diri kamu sendiri.",
+      "Kalau kamu capek, aku temenin. Kalau kamu bahagia, aku ikut bahagia juga.",
+      "Dan kalau suatu hari kamu ragu… ingat ya bby:",
+      "aku sayang kamu selalu dan akan terus menyayangimu."
+    ];
+
+    let endIndex = 0;
+    const endText = document.getElementById('endingText');
+    const endBtn = document.getElementById('endBtn');
+
+    endBtn.addEventListener('click', () => {
+      if (endIndex < endingLines.length) {
+        endText.textContent = endingLines[endIndex];
+        endIndex++;
+
+        microHearts(10);
+        blushOnce();
+        popToast("🤍");
+
+        if (endIndex === endingLines.length) {
+          endBtn.textContent = "Selesai 🌙";
+        }
+      }
+    });
+
+    // ===== WISH BUAT KITA =====
+    const wishLines = [
+      "Aku harap kita bisa tumbuh tanpa saling nyakitin.",
+      "Aku harap kita belajar dengerin, bukan cuma menang.",
+      "Kalau nanti ada capek dan beda, semoga kita milih ngobrol bersama.",
+      "Aku harap kita tetap saling milih, bahkan di hari yang biasa.",
+      "Dan kalau suatu hari nanti kita sampai jauh… semoga kita inget: semua ini dimulai dari rasa sayang yang sederhana."
+    ];
+
+    let wishIndex = 0;
+    const wishText = document.getElementById('wishText');
+    const wishBtn = document.getElementById('wishBtn');
+
+    wishBtn.addEventListener('click', () => {
+      if (wishIndex < wishLines.length) {
+        wishText.textContent = wishLines[wishIndex];
+        wishIndex++;
+
+        microHearts(8);
+        blushOnce();
+        popToast("🌱");
+
+        if (wishIndex === wishLines.length) {
+          wishBtn.textContent = "Aamiin 🤍";
+        }
+      }
+    });
+
+    // ===== WISH DARI DIA (tersimpan, bisa kamu baca lagi) =====
+    const hisWish = document.getElementById('hisWish');
+    const saveWishBtn = document.getElementById('saveWishBtn');
+    const wishSavedText = document.getElementById('wishSavedText');
+
+    const savedWish = localStorage.getItem('hisWishForUs');
+if (savedWish) {
+  hisWish.value = savedWish;
+  wishSavedText.style.display = 'block';
+  hisWish.setAttribute('disabled', 'true'); // ✅ tetap terkunci kalau sudah ada wish
+  saveWishBtn.textContent = "Aku udah tulis 🤍"; // ✅ tombol ikut berubah
+}
+
+    saveWishBtn.addEventListener('click', () => {
+  if (hisWish.value.trim() === "") {
+    popToast("tulis dulu yaa bby 🤍");
+    return;
+  }
+
+  localStorage.setItem('hisWishForUs', hisWish.value);
+
+  wishSavedText.style.display = 'block';
+  microHearts(12);
+  blushOnce();
+  popToast("wish disimpen 🤍");
+
+  // ✅ tambahan: kunci wish setelah disimpan
+  hisWish.setAttribute('disabled', 'true');
+  saveWishBtn.textContent = "Aku udah tulis 🤍";
+});
+
+    card.addEventListener('click', (e)=>{
+      if(e.target.closest('button')) return;
+      popHeart(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>
